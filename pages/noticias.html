@@ -12,336 +12,728 @@
         }
         
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
+            background: linear-gradient(135deg, #000F2B 0%, #052f63 50%, #13576E 100%);
             color: #333;
-            background-color: #f5f7fa;
+            min-height: 100vh;
         }
         
+        /* Header - Consistent with index */
         .header {
-            background-color: #1F3A5F;
-            color: white;
-            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 15, 43, 0.2);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+        
+        /* Logo (Center) - Same as index */
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
         }
         
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .nav {
-            background-color: #365F9C;
-            padding: 1rem 0;
-        }
-        
-        .nav ul {
-            list-style: none;
+        .logo-container {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
         
-        .nav li {
-            margin: 0 1rem;
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
         }
         
-        .nav a {
+        .logo-image {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .logo-image + .logo-placeholder {
+            display: none;
+        }
+        
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            fill: #000F2B;
+        }
+        
+        .logo-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             color: white;
+            opacity: 0.95;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Navigation Menu - Same as index */
+        .nav-container {
+            position: relative;
+            margin-left: auto;
+        }
+        
+        .nav-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            backdrop-filter: blur(15px);
+        }
+        
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-toggle.active {
+            background: rgba(19, 87, 110, 0.9);
+            border-color: rgba(19, 87, 110, 0.7);
+        }
+        
+        /* Dropdown Menu - Same as index */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            min-width: 320px;
+            background: rgba(0, 15, 43, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
+        }
+        
+        .nav-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 30px;
+            width: 16px;
+            height: 16px;
+            background: rgba(0, 15, 43, 0.95);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+        }
+        
+        .nav-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-item:first-child .nav-link {
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .nav-item:last-child .nav-link {
+            border-radius: 0 0 16px 16px;
+            border-bottom: none;
+        }
+        
+        .nav-link {
+            display: block;
+            color: rgba(255, 255, 255, 0.95);
+            padding: 1.2rem 1.8rem;
             text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
         
-        .nav a:hover, .nav a.active {
-            background-color: rgba(255,255,255,0.2);
+        .nav-link.active {
+            color: #13576E;
+            background: rgba(255, 255, 255, 0.9);
         }
         
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+            z-index: 0;
+        }
+        
+        .nav-item:hover::before {
+            left: 100%;
+        }
+        
+        .nav-item:hover .nav-link {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 2.2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Back to Home Link */
+        .back-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000F2B;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 0.9rem;
+        }
+        
+        .back-home:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 3rem 2rem;
         }
         
-        .breadcrumbs {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .breadcrumbs a {
-            color: #365F9C;
-            text-decoration: none;
-        }
-        
-        .breadcrumbs a:hover {
-            text-decoration: underline;
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
         }
         
         .page-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .page-title h2 {
-            color: #1F3A5F;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 300;
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
         }
         
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+        
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumbs a:hover {
+            color: white;
+        }
+        
+        .breadcrumbs span {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 0.5rem;
+        }
+        
+        /* News Grid */
         .news-grid {
             display: grid;
             gap: 2rem;
         }
         
         .news-item {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
             overflow: hidden;
-            transition: transform 0.2s;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .news-item:hover {
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
         
         .news-image {
             width: 100%;
             height: 200px;
-            background: linear-gradient(135deg, #365F9C, #1F3A5F);
+            background: linear-gradient(135deg, #13576E, #052f63);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .news-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 15, 43, 0.3);
+            backdrop-filter: blur(1px);
         }
         
         .news-content {
-            padding: 1.5rem;
+            padding: 2rem;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
         }
         
         .news-title {
-            color: #1F3A5F;
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+            color: #000F2B;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
         }
         
         .news-meta {
             color: #666;
             font-size: 0.9rem;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
         }
         
         .news-excerpt {
             color: #555;
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        
-        .news-category {
-            display: inline-block;
-            background: #F4B400;
-            color: #333;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 1rem;
         }
         
         .btn {
-            display: inline-block;
-            background-color: #365F9C;
+            background: linear-gradient(135deg, #13576E, #052f63);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 2rem;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 25px;
             font-size: 0.9rem;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .btn:hover {
-            background-color: #1F3A5F;
+            background: linear-gradient(135deg, #052f63, #000F2B);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(19, 87, 110, 0.3);
         }
         
-        .footer {
-            background-color: #2E2E2E;
-            color: white;
+        /* Load More Section */
+        .load-more {
             text-align: center;
-            padding: 2rem 0;
             margin-top: 4rem;
+            padding-top: 3rem;
         }
         
-        /* Responsive */
+        .load-more .btn {
+            padding: 1.2rem 3rem;
+            font-size: 1rem;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav ul {
+            .header {
+                padding: 1rem;
                 flex-direction: column;
-                align-items: center;
+                gap: 1rem;
             }
             
-            .nav li {
-                margin: 0.25rem 0;
+            .logo {
+                position: static;
+                transform: none;
+                order: 1;
             }
             
-            .page-title h2 {
-                font-size: 2rem;
+            .nav-container {
+                order: 2;
+                margin-left: 0;
+            }
+            
+            .back-home {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
             }
             
             .container {
-                padding: 1rem 0.5rem;
+                padding: 2rem 1rem;
+            }
+            
+            .page-title {
+                font-size: 2.5rem;
+            }
+            
+            .news-content {
+                padding: 1.5rem;
+            }
+            
+            .nav-dropdown {
+                min-width: 260px;
+                right: 50%;
+                transform: translateX(50%) translateY(-10px);
+            }
+            
+            .nav-dropdown.show {
+                transform: translateX(50%) translateY(0);
+            }
+            
+            .nav-dropdown::before {
+                left: 50%;
+                transform: translateX(-50%) rotate(45deg);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .news-title {
+                font-size: 1.2rem;
+            }
+            
+            .news-content {
+                padding: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <h1>Escuela Secundaria No. 184 "Eulalia Guzmán"</h1>
-        <p>Turno Vespertino - Noticias y Avisos</p>
-    </header>
+    <!-- Back to Home Link -->
+    <a href="../index.html" class="back-home">← Inicio</a>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <ul>
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="noticias.html" class="active">Noticias</a></li>
-            <li><a href="calendario.html">Calendario</a></li>
-            <li><a href="campos-formativos.html">Campos Formativos</a></li>
-            <li><a href="multimedia.html">Multimedia</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-    </nav>
+    <!-- Header - Same structure as index -->
+    <header class="header">
+        <!-- Logo (Center) -->
+        <div class="logo">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <img src="../assets/images/logos/logo-escuela.png" alt="Escudo Secundaria 184" class="logo-image">
+                    <svg class="logo-placeholder" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">Secundaria 184</div>
+            </div>
+        </div>
+        
+        <!-- Navigation Menu (Right) -->
+        <nav class="nav-container">
+            <button class="nav-toggle" id="navToggle">Menú</button>
+            <div class="nav-dropdown" id="navDropdown">
+                <div class="nav-item">
+                    <a href="../campos/lenguajes.html" class="nav-link">Lenguajes</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../campos/saberes-cientifico.html" class="nav-link">Saberes y Pensamiento Científico</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../campos/etica-naturaleza.html" class="nav-link">Ética, Naturaleza y Sociedad</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../campos/humano-comunitario.html" class="nav-link">De lo Humano y lo Comunitario</a>
+                </div>
+                <div class="nav-item">
+                    <a href="calendario.html" class="nav-link">Calendario</a>
+                </div>
+                <div class="nav-item">
+                    <a href="noticias.html" class="nav-link active">Noticias</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <div class="container">
         <!-- Breadcrumbs -->
         <nav class="breadcrumbs">
-            <a href="../index.html">🏠 Inicio</a> → <span>Noticias</span>
+            <a href="../index.html">🏠 Inicio</a>
+            <span>→</span>
+            <span>Noticias</span>
         </nav>
 
-        <!-- Page Title -->
-        <div class="page-title">
-            <h2>📰 Noticias y Avisos</h2>
-            <p>Mantente informado sobre los eventos más recientes y avisos importantes de nuestra escuela</p>
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">📰 Noticias y Avisos</h1>
+            <p class="page-subtitle">Mantente informado sobre los eventos más recientes y avisos importantes de nuestra comunidad educativa</p>
         </div>
 
         <!-- News Grid -->
         <div class="news-grid">
-            <!-- Noticia 1 -->
+            <!-- Featured News Item -->
             <article class="news-item">
                 <div class="news-image">
                     📚
                 </div>
                 <div class="news-content">
                     <div class="news-category">Académico</div>
-                    <h3 class="news-title">Inicio del Ciclo Escolar 2025-2026</h3>
-                    <p class="news-meta">📅 Publicado el 27 de agosto de 2025 | Por: Dirección</p>
+                    <h2 class="news-title">Inicio del Ciclo Escolar 2025-2026</h2>
+                    <div class="news-meta">
+                        <span>📅 27 de agosto de 2025</span>
+                        <span>👤 Dirección</span>
+                    </div>
                     <p class="news-excerpt">
-                        Nos complace anunciar el inicio del nuevo ciclo escolar. Las clases comenzarán el próximo lunes 1 de septiembre con el tradicional acto cívico de bienvenida. Los estudiantes de nuevo ingreso deberán presentarse...
+                        Nos complace anunciar el inicio del nuevo ciclo escolar 2025-2026. Las clases comenzarán el próximo lunes 2 de septiembre con el tradicional acto cívico de bienvenida. Los estudiantes de nuevo ingreso deberán presentarse a las 14:00 hrs en el patio principal para recibir sus horarios y conocer a sus maestros. Este año implementaremos nuevos programas académicos y actividades extracurriculares para enriquecer la experiencia educativa.
                     </p>
-                    <a href="noticia-inicio-ciclo-escolar.html" class="btn">Leer más →</a>
+                    <a href="#" class="btn">Leer más</a>
                 </div>
             </article>
 
-            <!-- Noticia 2 -->
+            <!-- News Item 2 -->
             <article class="news-item">
                 <div class="news-image">
                     📝
                 </div>
                 <div class="news-content">
                     <div class="news-category">Inscripciones</div>
-                    <h3 class="news-title">Proceso de Inscripciones Abiertas</h3>
-                    <p class="news-meta">📅 Publicado el 25 de agosto de 2025 | Por: Secretaría Escolar</p>
+                    <h2 class="news-title">Proceso de Inscripciones Abiertas</h2>
+                    <div class="news-meta">
+                        <span>📅 25 de agosto de 2025</span>
+                        <span>👤 Secretaría Escolar</span>
+                    </div>
                     <p class="news-excerpt">
-                        Se encuentran abiertas las inscripciones para el ciclo escolar 2025-2026. Los padres de familia pueden acudir a la secretaría escolar en horario de 15:00 a 18:00 hrs con los documentos requeridos...
+                        Se encuentran abiertas las inscripciones para el ciclo escolar 2025-2026. Los padres de familia pueden acudir a la secretaría escolar en horario de 15:00 a 18:00 hrs con los documentos requeridos: acta de nacimiento, CURP, comprobante de domicilio y certificado de primaria.
                     </p>
-                    <a href="noticia-inscripciones.html" class="btn">Leer más →</a>
+                    <a href="#" class="btn">Leer más</a>
                 </div>
             </article>
 
-            <!-- Noticia 3 -->
+            <!-- News Item 3 -->
             <article class="news-item">
                 <div class="news-image">
                     🎭
                 </div>
                 <div class="news-content">
                     <div class="news-category">Cultural</div>
-                    <h3 class="news-title">Festival de Talentos 2025</h3>
-                    <p class="news-meta">📅 Publicado el 23 de agosto de 2025 | Por: Coordinación Cultural</p>
+                    <h2 class="news-title">Festival de Talentos 2025</h2>
+                    <div class="news-meta">
+                        <span>📅 23 de agosto de 2025</span>
+                        <span>👤 Coordinación Cultural</span>
+                    </div>
                     <p class="news-excerpt">
-                        ¡Se acerca nuestro tradicional Festival de Talentos! Este año contaremos con presentaciones de danza, música, teatro y artes visuales. Las audiciones comenzarán la primera semana de septiembre...
+                        ¡Se acerca nuestro tradicional Festival de Talentos! Este año contaremos con presentaciones de danza, música, teatro y artes visuales. Las audiciones comenzarán la primera semana de septiembre. ¡Invitamos a todos los estudiantes a participar y mostrar sus habilidades artísticas!
                     </p>
-                    <a href="noticia-festival-talentos.html" class="btn">Leer más →</a>
+                    <a href="#" class="btn">Leer más</a>
                 </div>
             </article>
 
-            <!-- Noticia 4 -->
+            <!-- News Item 4 -->
             <article class="news-item">
                 <div class="news-image">
                     👥
                 </div>
                 <div class="news-content">
                     <div class="news-category">Padres de Familia</div>
-                    <h3 class="news-title">Reunión de Padres de Familia</h3>
-                    <p class="news-meta">📅 Publicado el 20 de agosto de 2025 | Por: Dirección</p>
+                    <h2 class="news-title">Primera Reunión de Padres de Familia</h2>
+                    <div class="news-meta">
+                        <span>📅 20 de agosto de 2025</span>
+                        <span>👤 Dirección</span>
+                    </div>
                     <p class="news-excerpt">
-                        Convocamos a todos los padres de familia a la reunión informativa que se llevará a cabo el viernes 5 de septiembre a las 18:00 hrs en el auditorio principal. Se tratarán temas importantes sobre...
+                        Convocamos a todos los padres de familia a la primera reunión informativa que se llevará a cabo el viernes 15 de septiembre a las 18:00 hrs en el auditorio principal. Se tratarán temas importantes sobre el plan de estudios, actividades extracurriculares y expectativas académicas.
                     </p>
-                    <a href="noticia-reunion-padres.html" class="btn">Leer más →</a>
+                    <a href="#" class="btn">Leer más</a>
                 </div>
             </article>
 
-            <!-- Noticia 5 -->
+            <!-- News Item 5 -->
             <article class="news-item">
                 <div class="news-image">
                     🏥
                 </div>
                 <div class="news-content">
                     <div class="news-category">Salud</div>
-                    <h3 class="news-title">Campaña de Vacunación Escolar</h3>
-                    <p class="news-meta">📅 Publicado el 18 de agosto de 2025 | Por: Enfermería Escolar</p>
+                    <h2 class="news-title">Campaña de Vacunación Escolar</h2>
+                    <div class="news-meta">
+                        <span>📅 18 de agosto de 2025</span>
+                        <span>👤 Enfermería Escolar</span>
+                    </div>
                     <p class="news-excerpt">
-                        En coordinación con la Secretaría de Salud, se realizará la campaña anual de vacunación los días 10 y 11 de septiembre. Es importante que los estudiantes presenten su cartilla de vacunación...
+                        En coordinación con la Secretaría de Salud, se realizará la campaña anual de vacunación los días 10 y 11 de septiembre. Es importante que los estudiantes presenten su cartilla de vacunación actualizada. El proceso será supervisado por personal médico certificado.
                     </p>
-                    <a href="noticia-vacunacion.html" class="btn">Leer más →</a>
+                    <a href="#" class="btn">Leer más</a>
                 </div>
             </article>
 
-            <!-- Noticia 6 -->
+            <!-- News Item 6 -->
             <article class="news-item">
                 <div class="news-image">
                     🎓
                 </div>
                 <div class="news-content">
                     <div class="news-category">Académico</div>
-                    <h3 class="news-title">Nuevos Programas de Apoyo Académico</h3>
-                    <p class="news-meta">📅 Publicado el 15 de agosto de 2025 | Por: Coordinación Académica</p>
+                    <h2 class="news-title">Nuevos Programas de Apoyo Académico</h2>
+                    <div class="news-meta">
+                        <span>📅 15 de agosto de 2025</span>
+                        <span>👤 Coordinación Académica</span>
+                    </div>
                     <p class="news-excerpt">
-                        Este ciclo escolar implementaremos nuevos programas de apoyo académico para estudiantes que requieren refuerzo en matemáticas y español. Las sesiones serán gratuitas y se realizarán...
+                        Este ciclo escolar implementaremos nuevos programas de apoyo académico para estudiantes que requieren refuerzo en matemáticas y español. Las sesiones serán gratuitas y se realizarán los miércoles y viernes de 12:00 a 13:00 hrs. La inscripción se realiza con el tutor de grupo.
                     </p>
-                    <a href="noticia-apoyo-academico.html" class="btn">Leer más →</a>
+                    <a href="#" class="btn">Leer más</a>
                 </div>
             </article>
         </div>
 
-        <!-- More News Button -->
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="historico.html" class="btn" style="padding: 1rem 2rem; font-size: 1rem;">Ver archivo histórico de noticias →</a>
+        <!-- Load More Section -->
+        <div class="load-more">
+            <a href="historico.html" class="btn">Ver archivo histórico de noticias</a>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p><strong>Escuela Secundaria No. 184 "Eulalia Guzmán" - Turno Vespertino</strong></p>
-        <p>📍 Dirección: [Dirección de la escuela]</p>
-        <p>📞 Teléfono: 81-XXXX-XXXX</p>
-        <p>📧 Email: contacto@secundaria184.edu.mx</p>
-        <p>🕐 Horario: Turno Vespertino 14:00 - 20:00 hrs</p>
-        <p style="margin-top: 1rem; opacity: 0.7;">© 2025 Escuela Secundaria 184. Todos los derechos reservados.</p>
-    </footer>
+    <script>
+        // Navigation Menu Toggle - Same as index
+        const navToggle = document.getElementById('navToggle');
+        const navDropdown = document.getElementById('navDropdown');
+        
+        navToggle.addEventListener('click', function() {
+            navDropdown.classList.toggle('show');
+            navToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
+                navDropdown.classList.remove('show');
+                navToggle.classList.remove('active');
+            }
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                navDropdown.classList.remove('show');
+                navToggle.classList.remove('active');
+            }
+        });
+        
+        // Smooth scrolling
+        document.documentElement.style.scrollBehavior = 'smooth';
+        
+        // Add entrance animations
+        const newsItems = document.querySelectorAll('.news-item');
+        newsItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                item.style.transition = 'all 0.6s ease';
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+        
+        // Keyboard navigation support
+        navToggle.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                navToggle.click();
+            }
+        });
+        
+        // Focus management for dropdown
+        navDropdown.addEventListener('keydown', function(event) {
+            const links = navDropdown.querySelectorAll('.nav-link');
+            const currentIndex = Array.from(links).indexOf(document.activeElement);
+            
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                const nextIndex = currentIndex < links.length - 1 ? currentIndex + 1 : 0;
+                links[nextIndex].focus();
+            }
+            
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                const prevIndex = currentIndex > 0 ? currentIndex - 1 : links.length - 1;
+                links[prevIndex].focus();
+            }
+        });
+    </script>
 </body>
 </html>
