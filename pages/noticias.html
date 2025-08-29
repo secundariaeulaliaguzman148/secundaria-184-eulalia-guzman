@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias - Escuela Secundaria No. 184 Eulalia Guzmán</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        .header {
+            background-color: #1F3A5F;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .nav {
+            background-color: #365F9C;
+            padding: 1rem 0;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav li {
+            margin: 0 1rem;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .breadcrumbs {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .breadcrumbs a {
+            color: #365F9C;
+            text-decoration: none;
+        }
+        
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .page-title h2 {
+            color: #1F3A5F;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .news-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .news-item {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #365F9C, #1F3A5F);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-title {
+            color: #1F3A5F;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .news-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .news-excerpt {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background: #F4B400;
+            color: #333;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #365F9C;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #1F3A5F;
+        }
+        
+        .footer {
+            background-color: #2E2E2E;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav li {
+                margin: 0.25rem 0;
+            }
+            
+            .page-title h2 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Escuela Secundaria No. 184 "Eulalia Guzmán"</h1>
+        <p>Turno Vespertino - Noticias y Avisos</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="noticias.html" class="active">Noticias</a></li>
+            <li><a href="calendario.html">Calendario</a></li>
+            <li><a href="campos-formativos.html">Campos Formativos</a></li>
+            <li><a href="multimedia.html">Multimedia</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs">
+            <a href="../index.html">🏠 Inicio</a> → <span>Noticias</span>
+        </nav>
+
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>📰 Noticias y Avisos</h2>
+            <p>Mantente informado sobre los eventos más recientes y avisos importantes de nuestra escuela</p>
+        </div>
+
+        <!-- News Grid -->
+        <div class="news-grid">
+            <!-- Noticia 1 -->
+            <article class="news-item">
+                <div class="news-image">
+                    📚
+                </div>
+                <div class="news-content">
+                    <div class="news-category">Académico</div>
+                    <h3 class="news-title">Inicio del Ciclo Escolar 2025-2026</h3>
+                    <p class="news-meta">📅 Publicado el 27 de agosto de 2025 | Por: Dirección</p>
+                    <p class="news-excerpt">
+                        Nos complace anunciar el inicio del nuevo ciclo escolar. Las clases comenzarán el próximo lunes 1 de septiembre con el tradicional acto cívico de bienvenida. Los estudiantes de nuevo ingreso deberán presentarse...
+                    </p>
+                    <a href="noticia-inicio-ciclo-escolar.html" class="btn">Leer más →</a>
+                </div>
+            </article>
+
+            <!-- Noticia 2 -->
+            <article class="news-item">
+                <div class="news-image">
+                    📝
+                </div>
+                <div class="news-content">
+                    <div class="news-category">Inscripciones</div>
+                    <h3 class="news-title">Proceso de Inscripciones Abiertas</h3>
+                    <p class="news-meta">📅 Publicado el 25 de agosto de 2025 | Por: Secretaría Escolar</p>
+                    <p class="news-excerpt">
+                        Se encuentran abiertas las inscripciones para el ciclo escolar 2025-2026. Los padres de familia pueden acudir a la secretaría escolar en horario de 15:00 a 18:00 hrs con los documentos requeridos...
+                    </p>
+                    <a href="noticia-inscripciones.html" class="btn">Leer más →</a>
+                </div>
+            </article>
+
+            <!-- Noticia 3 -->
+            <article class="news-item">
+                <div class="news-image">
+                    🎭
+                </div>
+                <div class="news-content">
+                    <div class="news-category">Cultural</div>
+                    <h3 class="news-title">Festival de Talentos 2025</h3>
+                    <p class="news-meta">📅 Publicado el 23 de agosto de 2025 | Por: Coordinación Cultural</p>
+                    <p class="news-excerpt">
+                        ¡Se acerca nuestro tradicional Festival de Talentos! Este año contaremos con presentaciones de danza, música, teatro y artes visuales. Las audiciones comenzarán la primera semana de septiembre...
+                    </p>
+                    <a href="noticia-festival-talentos.html" class="btn">Leer más →</a>
+                </div>
+            </article>
+
+            <!-- Noticia 4 -->
+            <article class="news-item">
+                <div class="news-image">
+                    👥
+                </div>
+                <div class="news-content">
+                    <div class="news-category">Padres de Familia</div>
+                    <h3 class="news-title">Reunión de Padres de Familia</h3>
+                    <p class="news-meta">📅 Publicado el 20 de agosto de 2025 | Por: Dirección</p>
+                    <p class="news-excerpt">
+                        Convocamos a todos los padres de familia a la reunión informativa que se llevará a cabo el viernes 5 de septiembre a las 18:00 hrs en el auditorio principal. Se tratarán temas importantes sobre...
+                    </p>
+                    <a href="noticia-reunion-padres.html" class="btn">Leer más →</a>
+                </div>
+            </article>
+
+            <!-- Noticia 5 -->
+            <article class="news-item">
+                <div class="news-image">
+                    🏥
+                </div>
+                <div class="news-content">
+                    <div class="news-category">Salud</div>
+                    <h3 class="news-title">Campaña de Vacunación Escolar</h3>
+                    <p class="news-meta">📅 Publicado el 18 de agosto de 2025 | Por: Enfermería Escolar</p>
+                    <p class="news-excerpt">
+                        En coordinación con la Secretaría de Salud, se realizará la campaña anual de vacunación los días 10 y 11 de septiembre. Es importante que los estudiantes presenten su cartilla de vacunación...
+                    </p>
+                    <a href="noticia-vacunacion.html" class="btn">Leer más →</a>
+                </div>
+            </article>
+
+            <!-- Noticia 6 -->
+            <article class="news-item">
+                <div class="news-image">
+                    🎓
+                </div>
+                <div class="news-content">
+                    <div class="news-category">Académico</div>
+                    <h3 class="news-title">Nuevos Programas de Apoyo Académico</h3>
+                    <p class="news-meta">📅 Publicado el 15 de agosto de 2025 | Por: Coordinación Académica</p>
+                    <p class="news-excerpt">
+                        Este ciclo escolar implementaremos nuevos programas de apoyo académico para estudiantes que requieren refuerzo en matemáticas y español. Las sesiones serán gratuitas y se realizarán...
+                    </p>
+                    <a href="noticia-apoyo-academico.html" class="btn">Leer más →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- More News Button -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="historico.html" class="btn" style="padding: 1rem 2rem; font-size: 1rem;">Ver archivo histórico de noticias →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Escuela Secundaria No. 184 "Eulalia Guzmán" - Turno Vespertino</strong></p>
+        <p>📍 Dirección: [Dirección de la escuela]</p>
+        <p>📞 Teléfono: 81-XXXX-XXXX</p>
+        <p>📧 Email: contacto@secundaria184.edu.mx</p>
+        <p>🕐 Horario: Turno Vespertino 14:00 - 20:00 hrs</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">© 2025 Escuela Secundaria 184. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
