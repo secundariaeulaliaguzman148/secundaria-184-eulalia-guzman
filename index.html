@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escuela Secundaria No. 184 Eulalia Guzmán</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        .header {
+            background-color: #1F3A5F;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .nav {
+            background-color: #365F9C;
+            padding: 1rem 0;
+        }
+        
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .nav li {
+            margin: 0 1rem;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        
+        .hero {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .hero h2 {
+            color: #1F3A5F;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #666;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #F4B400;
+            color: #333;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .card h3 {
+            color: #1F3A5F;
+            margin-bottom: 1rem;
+        }
+        
+        .card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card a {
+            color: #365F9C;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .footer {
+            background-color: #2E2E2E;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer p {
+            margin: 0.5rem 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav li {
+                margin: 0.25rem 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>Escuela Secundaria No. 184 "Eulalia Guzmán"</h1>
+        <p>Turno Vespertino - Sitio Oficial</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#noticias">Noticias</a></li>
+            <li><a href="#calendario">Calendario</a></li>
+            <li><a href="#campos">Campos Formativos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="inicio">
+            <h2>Bienvenidos a nuestra comunidad educativa</h2>
+            <p>Comprometidos con la excelencia académica y el desarrollo integral de nuestros estudiantes en el turno vespertino.</p>
+            <a href="#noticias" class="btn">Ver Noticias Recientes</a>
+        </section>
+
+        <!-- Cards Section -->
+        <div class="cards">
+            <div class="card" id="noticias">
+                <h3>📰 Noticias</h3>
+                <p>Mantente informado sobre los eventos más recientes, avisos importantes y actividades escolares.</p>
+                <a href="#noticias">Ver todas las noticias →</a>
+            </div>
+
+            <div class="card" id="calendario">
+                <h3>📅 Calendarios</h3>
+                <p>Consulta el calendario escolar oficial y las actividades internas de la institución.</p>
+                <a href="#calendario">Ver calendario →</a>
+            </div>
+
+            <div class="card" id="campos">
+                <h3>📚 Campos Formativos</h3>
+                <p>Conoce nuestra estructura académica organizada en los 4 campos formativos del plan de estudios.</p>
+                <a href="#campos">Explorar campos →</a>
+            </div>
+
+            <div class="card">
+                <h3>🎭 Multimedia</h3>
+                <p>Galería de fotos y videos de eventos, festivales y actividades culturales de nuestra escuela.</p>
+                <a href="#multimedia">Ver galería →</a>
+            </div>
+        </div>
+
+        <!-- Temporary Sections (para demonstrar) -->
+        <section style="margin-top: 4rem; padding: 2rem; background: white; border-radius: 8px;">
+            <h2 style="color: #1F3A5F; text-align: center; margin-bottom: 2rem;" id="campos">Campos Formativos</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>🗣️ Lenguajes</h3>
+                    <p>Español, Inglés y Artes</p>
+                    <small>Desarrollo de competencias comunicativas en diversos lenguajes</small>
+                </div>
+                <div class="card">
+                    <h3>🔬 Saberes y Pensamiento Científico</h3>
+                    <p>Matemáticas, Ciencias y Tecnología</p>
+                    <small>Construcción del conocimiento científico y tecnológico</small>
+                </div>
+                <div class="card">
+                    <h3>🌍 Ética, Naturaleza y Sociedad</h3>
+                    <p>Historia, Geografía y Formación Cívica</p>
+                    <small>Comprensión del entorno natural y social</small>
+                </div>
+                <div class="card">
+                    <h3>🤝 De lo Humano y lo Comunitario</h3>
+                    <p>Educación Física, Tutoría y Vida Saludable</p>
+                    <small>Desarrollo integral de la persona en comunidad</small>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <p><strong>Escuela Secundaria No. 184 "Eulalia Guzmán" - Turno Vespertino</strong></p>
+        <p>📍 Dirección: [Dirección de la escuela]</p>
+        <p>📞 Teléfono: 81-XXXX-XXXX</p>
+        <p>📧 Email: contacto@secundaria184.edu.mx</p>
+        <p>🕐 Horario: Turno Vespertino 14:00 - 20:00 hrs</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">© 2025 Escuela Secundaria 184. Sitio web informativo oficial.</p>
+    </footer>
+</body>
+</html>
