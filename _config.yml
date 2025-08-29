@@ -12,9 +12,7 @@ permalink: /noticias/:year/:month/:day/:title/
 # Información de contacto
 school:
   name: "Escuela Secundaria No. 184 Eulalia Guzmán"
-  address: "Dirección de la escuela aquí"
-  phone: "81-XXXX-XXXX"
-  email: "contacto@secundaria184.edu.mx"
+  address: "De La Borrasca S/N, Acueducto de Guadalupe, Gustavo A. Madero, 07270 Ciudad de México, CDMX"
   schedule: "Turno Vespertino: 14:00 - 20:00 hrs"
 
 # Configuración
