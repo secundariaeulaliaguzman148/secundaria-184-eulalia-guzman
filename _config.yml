@@ -1,0 +1,22 @@
+# Información del sitio
+title: "Escuela Secundaria No. 184 Eulalia Guzmán"
+description: "Turno Vespertino - Sitio oficial informativo"
+baseurl: "/secundaria-184-eulalia-guzman"
+url: "https://secundariaeulaliaguzman148.github.io"
+
+# Jekyll configuración
+markdown: kramdown
+highlighter: rouge
+permalink: /noticias/:year/:month/:day/:title/
+
+# Información de contacto
+school:
+  name: "Escuela Secundaria No. 184 Eulalia Guzmán"
+  address: "Dirección de la escuela aquí"
+  phone: "81-XXXX-XXXX"
+  email: "contacto@secundaria184.edu.mx"
+  schedule: "Turno Vespertino: 14:00 - 20:00 hrs"
+
+# Configuración
+timezone: America/Mexico_City
+lang: es-MX
