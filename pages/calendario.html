@@ -13,25 +13,250 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-            background: linear-gradient(135deg, #000F2B, #052f63);
+            background: linear-gradient(135deg, #000F2B 0%, #052f63 50%, #13576E 100%);
             color: #333;
             min-height: 100vh;
-            padding: 2rem 0;
         }
         
-        /* Header */
+        /* Header - Consistent with other pages */
         .header {
+            position: relative;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 15, 43, 0.2);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+        }
+        
+        /* Logo (Center) - Same as other pages */
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-image {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        .logo-image + .logo-placeholder {
+            display: none;
+        }
+        
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            fill: #000F2B;
+        }
+        
+        .logo-text {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: white;
+            opacity: 0.95;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Navigation Menu - Same as other pages */
+        .nav-container {
+            position: relative;
+            margin-left: auto;
+        }
+        
+        .nav-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            backdrop-filter: blur(15px);
+        }
+        
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-toggle.active {
+            background: rgba(19, 87, 110, 0.9);
+            border-color: rgba(19, 87, 110, 0.7);
+        }
+        
+        /* Dropdown Menu - Same as other pages */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 15px);
+            right: 0;
+            min-width: 320px;
+            background: rgba(0, 15, 43, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
+        }
+        
+        .nav-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 30px;
+            width: 16px;
+            height: 16px;
+            background: rgba(0, 15, 43, 0.95);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            transform: rotate(45deg);
+        }
+        
+        .nav-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-item:first-child .nav-link {
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .nav-item:last-child .nav-link {
+            border-radius: 0 0 16px 16px;
+            border-bottom: none;
+        }
+        
+        .nav-link {
+            display: block;
+            color: rgba(255, 255, 255, 0.95);
+            padding: 1.2rem 1.8rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .nav-link.active {
+            color: #13576E;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            transition: left 0.5s ease;
+            z-index: 0;
+        }
+        
+        .nav-item:hover::before {
+            left: 100%;
+        }
+        
+        .nav-item:hover .nav-link {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 2.2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Back to Home Link */
+        .back-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000F2B;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 999;
+            font-size: 0.9rem;
+        }
+        
+        .back-home:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Calendar Header */
+        .calendar-header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 2rem;
-            margin: 0 2rem 3rem;
+            margin: 3rem 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
-        .header h1 {
+        .calendar-header h1 {
             color: #7B2D26;
             font-size: 2.5rem;
             font-weight: 700;
@@ -39,14 +264,14 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
-        .header h2 {
+        .calendar-header h2 {
             color: #D4A574;
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1rem;
         }
         
-        .header p {
+        .calendar-header p {
             color: #666;
             font-size: 1rem;
             max-width: 600px;
@@ -65,26 +290,29 @@
             font-size: 1.2rem;
         }
         
-        /* Navigation */
-        .nav-back {
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            color: #000F2B;
-            padding: 0.8rem 1.5rem;
+        /* Breadcrumbs */
+        .breadcrumbs {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
             border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            margin: 0 2rem 2rem;
+            backdrop-filter: blur(10px);
+            display: inline-block;
         }
         
-        .nav-back:hover {
-            background: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        .breadcrumbs a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumbs a:hover {
+            color: white;
+        }
+        
+        .breadcrumbs span {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 0.5rem;
         }
         
         /* Calendar Container */
@@ -329,20 +557,40 @@
         }
         
         @media (max-width: 768px) {
-            body {
-                padding: 1rem 0;
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
             }
             
-            .header {
-                margin: 0 1rem 2rem;
+            .logo {
+                position: static;
+                transform: none;
+                order: 1;
+            }
+            
+            .nav-container {
+                order: 2;
+                margin-left: 0;
+            }
+            
+            .back-home {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.8rem;
+            }
+            
+            .calendar-header {
+                margin: 2rem 1rem;
                 padding: 1.5rem;
             }
             
-            .header h1 {
+            .calendar-header h1 {
                 font-size: 2rem;
             }
             
-            .header h2 {
+            .calendar-header h2 {
                 font-size: 1.4rem;
             }
             
@@ -360,10 +608,19 @@
                 padding: 1.5rem;
             }
             
-            .nav-back {
-                top: 1rem;
-                left: 1rem;
-                padding: 0.6rem 1.2rem;
+            .nav-dropdown {
+                min-width: 260px;
+                right: 50%;
+                transform: translateX(50%) translateY(-10px);
+            }
+            
+            .nav-dropdown.show {
+                transform: translateX(50%) translateY(0);
+            }
+            
+            .nav-dropdown::before {
+                left: 50%;
+                transform: translateX(-50%) rotate(45deg);
             }
         }
         
@@ -383,11 +640,59 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <a href="../index.html" class="nav-back">← Inicio</a>
+    <!-- Back to Home Link -->
+    <a href="../index.html" class="back-home">← Inicio</a>
     
-    <!-- Header -->
+    <!-- Header - Same structure as other pages -->
     <header class="header">
+        <!-- Logo (Center) -->
+        <div class="logo">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <img src="../assets/images/logos/logo-escuela.png" alt="Escudo Secundaria 184" class="logo-image">
+                    <svg class="logo-placeholder" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">Secundaria 184</div>
+            </div>
+        </div>
+        
+        <!-- Navigation Menu (Right) -->
+        <nav class="nav-container">
+            <button class="nav-toggle" id="navToggle">Menú</button>
+            <div class="nav-dropdown" id="navDropdown">
+                <div class="nav-item">
+                    <a href="../campos/lenguajes.html" class="nav-link">Lenguajes</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../campos/saberes-cientifico.html" class="nav-link">Saberes y Pensamiento Científico</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../campos/etica-naturaleza.html" class="nav-link">Ética, Naturaleza y Sociedad</a>
+                </div>
+                <div class="nav-item">
+                    <a href="../campos/humano-comunitario.html" class="nav-link">De lo Humano y lo Comunitario</a>
+                </div>
+                <div class="nav-item">
+                    <a href="calendario.html" class="nav-link active">Calendario</a>
+                </div>
+                <div class="nav-item">
+                    <a href="noticias.html" class="nav-link">Noticias</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs">
+        <a href="../index.html">🏠 Inicio</a>
+        <span>→</span>
+        <span>Calendario</span>
+    </nav>
+    
+    <!-- Calendar Header -->
+    <header class="calendar-header">
         <h1>Calendario Escolar</h1>
         <h2>2025-2026</h2>
         <p>Vigente para las escuelas públicas y particulares incorporadas al Sistema Educativo Nacional en los Estados Unidos Mexicanos.</p>
@@ -442,6 +747,31 @@
     </section>
 
     <script>
+        // Navigation Menu Toggle - Same as other pages
+        const navToggle = document.getElementById('navToggle');
+        const navDropdown = document.getElementById('navDropdown');
+        
+        navToggle.addEventListener('click', function() {
+            navDropdown.classList.toggle('show');
+            navToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
+                navDropdown.classList.remove('show');
+                navToggle.classList.remove('active');
+            }
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                navDropdown.classList.remove('show');
+                navToggle.classList.remove('active');
+            }
+        });
+        
         // Calendar data structure
         const calendarData = {
             2025: {
@@ -690,27 +1020,31 @@
             });
         });
         
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                // Remove focus from any focused elements
-                document.activeElement.blur();
+        // Keyboard navigation support
+        navToggle.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                navToggle.click();
             }
         });
         
-        // Add print styles
-        const printStyles = `
-            @media print {
-                body { background: white; padding: 0; }
-                .nav-back { display: none; }
-                .calendar-grid { grid-template-columns: repeat(2, 1fr); }
-                .month-block { break-inside: avoid; }
+        // Focus management for dropdown
+        navDropdown.addEventListener('keydown', function(event) {
+            const links = navDropdown.querySelectorAll('.nav-link');
+            const currentIndex = Array.from(links).indexOf(document.activeElement);
+            
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                const nextIndex = currentIndex < links.length - 1 ? currentIndex + 1 : 0;
+                links[nextIndex].focus();
             }
-        `;
-        
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = printStyles;
-        document.head.appendChild(styleSheet);
+            
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                const prevIndex = currentIndex > 0 ? currentIndex - 1 : links.length - 1;
+                links[prevIndex].focus();
+            }
+        });
     </script>
 </body>
 </html>
