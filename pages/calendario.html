@@ -1,1 +1,716 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Escolar 2025-2026 - Secundaria 184</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #000F2B, #052f63);
+            color: #333;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            margin: 0 2rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header h1 {
+            color: #7B2D26;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h2 {
+            color: #D4A574;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .days-count {
+            background: #7B2D26;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        /* Navigation */
+        .nav-back {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000F2B;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .nav-back:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Calendar Container */
+        .calendar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Calendar Grid */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* Month Block */
+        .month-block {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .month-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            border-color: rgba(123, 45, 38, 0.2);
+        }
+        
+        .month-header {
+            text-align: center;
+            padding: 1rem 0;
+            background: var(--month-color, #7B2D26);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Month Colors */
+        .august { --month-color: #7B2D26; }
+        .september { --month-color: #7B2D26; }
+        .october { --month-color: #7B2D26; }
+        .november { --month-color: #7B2D26; }
+        .december { --month-color: #7B2D26; }
+        .january { --month-color: #7B2D26; }
+        .february { --month-color: #7B2D26; }
+        .march { --month-color: #7B2D26; }
+        .april { --month-color: #7B2D26; }
+        .may { --month-color: #7B2D26; }
+        .june { --month-color: #7B2D26; }
+        .july { --month-color: #7B2D26; }
+        
+        /* Calendar Days Grid */
+        .days-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .day-label {
+            text-align: center;
+            font-weight: 600;
+            color: #666;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+        }
+        
+        .day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            font-size: 0.9rem;
+        }
+        
+        .day:hover {
+            transform: scale(1.1);
+            z-index: 10;
+        }
+        
+        /* Day Types */
+        .day.regular {
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .day.start-classes {
+            background: #059669;
+            color: white;
+        }
+        
+        .day.end-classes {
+            background: #1f2937;
+            color: white;
+        }
+        
+        .day.vacation {
+            background: #9ca3af;
+            color: white;
+        }
+        
+        .day.suspension {
+            background: #1f2937;
+            color: white;
+        }
+        
+        .day.workshop {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .day.evaluation {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .day.registration {
+            background: #ec4899;
+            color: white;
+        }
+        
+        .day.intensive {
+            background: #7B2D26;
+            color: white;
+        }
+        
+        .day.current {
+            border: 3px solid #dc2626;
+            font-weight: 700;
+        }
+        
+        /* Tooltip */
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            margin-bottom: 5px;
+        }
+        
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .day:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Legend */
+        .legend {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 0 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .legend h3 {
+            text-align: center;
+            color: #7B2D26;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .legend-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+        
+        .legend-text {
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .calendar-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem 0;
+            }
+            
+            .header {
+                margin: 0 1rem 2rem;
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header h2 {
+                font-size: 1.4rem;
+            }
+            
+            .calendar-container {
+                padding: 0 1rem;
+            }
+            
+            .calendar-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .legend {
+                margin: 0 1rem;
+                padding: 1.5rem;
+            }
+            
+            .nav-back {
+                top: 1rem;
+                left: 1rem;
+                padding: 0.6rem 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .day {
+                font-size: 0.8rem;
+            }
+            
+            .month-header {
+                font-size: 1rem;
+            }
+            
+            .legend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <a href="../index.html" class="nav-back">← Inicio</a>
+    
+    <!-- Header -->
+    <header class="header">
+        <h1>Calendario Escolar</h1>
+        <h2>2025-2026</h2>
+        <p>Vigente para las escuelas públicas y particulares incorporadas al Sistema Educativo Nacional en los Estados Unidos Mexicanos.</p>
+        <div class="days-count">185 DÍAS</div>
+    </header>
+    
+    <!-- Calendar Container -->
+    <div class="calendar-container">
+        <!-- Calendar Grid -->
+        <div class="calendar-grid" id="calendarGrid">
+            <!-- Months will be generated by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Legend -->
+    <section class="legend">
+        <h3>Acotaciones</h3>
+        <div class="legend-grid">
+            <div class="legend-item">
+                <div class="legend-color" style="background: #059669;"></div>
+                <div class="legend-text">Inicio de clases del ciclo escolar 2025-2026</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #1f2937;"></div>
+                <div class="legend-text">Fin de clases del ciclo escolar 2025-2026</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #1f2937;"></div>
+                <div class="legend-text">Suspensión de labores docentes</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #9ca3af;"></div>
+                <div class="legend-text">Vacaciones</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #f59e0b;"></div>
+                <div class="legend-text">Taller intensivo para personal con funciones de dirección</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #7B2D26;"></div>
+                <div class="legend-text">Taller intensivo para personal docente</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #ec4899;"></div>
+                <div class="legend-text">Preinscripción a preescolar, primer grado de primaria y primer grado de secundaria</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: #3b82f6;"></div>
+                <div class="legend-text">Registro de calificaciones</div>
+            </div>
+        </div>
+    </section>
 
+    <script>
+        // Calendar data structure
+        const calendarData = {
+            2025: {
+                8: {
+                    name: 'Agosto',
+                    days: 31,
+                    startDay: 4, // Friday
+                    specialDays: {
+                        26: { type: 'intensive', description: 'Taller intensivo para personal docente' },
+                        27: { type: 'intensive', description: 'Taller intensivo para personal docente' },
+                        28: { type: 'intensive', description: 'Taller intensivo para personal docente' },
+                        29: { type: 'intensive', description: 'Taller intensivo para personal docente' },
+                        30: { type: 'intensive', description: 'Taller intensivo para personal docente' }
+                    }
+                },
+                9: {
+                    name: 'Septiembre',
+                    days: 30,
+                    startDay: 0, // Monday
+                    specialDays: {
+                        2: { type: 'start-classes', description: 'Inicio de clases del ciclo escolar 2025-2026' },
+                        16: { type: 'suspension', description: 'Suspensión de labores docentes - Día de la Independencia' },
+                        26: { type: 'suspension', description: 'Suspensión de labores docentes' }
+                    }
+                },
+                10: {
+                    name: 'Octubre',
+                    days: 31,
+                    startDay: 2, // Wednesday
+                    specialDays: {}
+                },
+                11: {
+                    name: 'Noviembre',
+                    days: 30,
+                    startDay: 5, // Saturday
+                    specialDays: {
+                        17: { type: 'suspension', description: 'Suspensión de labores docentes - Día de la Revolución Mexicana' },
+                        28: { type: 'evaluation', description: 'Registro de calificaciones del primer periodo' },
+                        29: { type: 'evaluation', description: 'Registro de calificaciones del primer periodo' }
+                    }
+                },
+                12: {
+                    name: 'Diciembre',
+                    days: 31,
+                    startDay: 0, // Monday
+                    specialDays: {
+                        22: { type: 'vacation', description: 'Inicio de vacaciones de invierno' },
+                        23: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        24: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        25: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        26: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        29: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        30: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        31: { type: 'vacation', description: 'Vacaciones de invierno' }
+                    }
+                }
+            },
+            2026: {
+                1: {
+                    name: 'Enero',
+                    days: 31,
+                    startDay: 3, // Thursday
+                    specialDays: {
+                        1: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        2: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        3: { type: 'vacation', description: 'Vacaciones de invierno' },
+                        6: { type: 'regular', description: 'Regreso a clases' },
+                        30: { type: 'suspension', description: 'Suspensión de labores docentes' }
+                    }
+                },
+                2: {
+                    name: 'Febrero',
+                    days: 28,
+                    startDay: 6, // Sunday
+                    specialDays: {
+                        3: { type: 'suspension', description: 'Día de la Constitución' },
+                        9: { type: 'workshop', description: 'Taller intensivo para personal con funciones de dirección' },
+                        10: { type: 'workshop', description: 'Taller intensivo para personal con funciones de dirección' },
+                        11: { type: 'workshop', description: 'Taller intensivo para personal con funciones de dirección' },
+                        12: { type: 'workshop', description: 'Taller intensivo para personal con funciones de dirección' },
+                        13: { type: 'workshop', description: 'Taller intensivo para personal con funciones de dirección' },
+                        27: { type: 'suspension', description: 'Suspensión de labores docentes' }
+                    }
+                },
+                3: {
+                    name: 'Marzo',
+                    days: 31,
+                    startDay: 6, // Sunday
+                    specialDays: {
+                        16: { type: 'suspension', description: 'Natalicio de Benito Juárez' },
+                        27: { type: 'evaluation', description: 'Registro de calificaciones del segundo periodo' },
+                        30: { type: 'vacation', description: 'Inicio de vacaciones de primavera' },
+                        31: { type: 'vacation', description: 'Vacaciones de primavera' }
+                    }
+                },
+                4: {
+                    name: 'Abril',
+                    days: 30,
+                    startDay: 2, // Wednesday
+                    specialDays: {
+                        1: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        2: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        3: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        4: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        7: { type: 'regular', description: 'Regreso a clases' },
+                        8: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        9: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        10: { type: 'vacation', description: 'Vacaciones de primavera' },
+                        11: { type: 'vacation', description: 'Vacaciones de primavera' }
+                    }
+                },
+                5: {
+                    name: 'Mayo',
+                    days: 31,
+                    startDay: 4, // Friday
+                    specialDays: {
+                        1: { type: 'suspension', description: 'Día del Trabajo' },
+                        5: { type: 'suspension', description: 'Batalla de Puebla' },
+                        15: { type: 'suspension', description: 'Día del Maestro' },
+                        29: { type: 'suspension', description: 'Suspensión de labores docentes' }
+                    }
+                },
+                6: {
+                    name: 'Junio',
+                    days: 30,
+                    startDay: 0, // Monday
+                    specialDays: {
+                        26: { type: 'evaluation', description: 'Registro de calificaciones del tercer periodo' }
+                    }
+                },
+                7: {
+                    name: 'Julio',
+                    days: 31,
+                    startDay: 2, // Wednesday
+                    specialDays: {
+                        3: { type: 'registration', description: 'Preinscripción ciclo escolar 2026-2027' },
+                        15: { type: 'end-classes', description: 'Fin de clases del ciclo escolar 2025-2026' },
+                        16: { type: 'workshop', description: 'Taller intensivo para personal docente' },
+                        17: { type: 'workshop', description: 'Taller intensivo para personal docente' },
+                        18: { type: 'evaluation', description: 'Registro de calificaciones finales' },
+                        21: { type: 'vacation', description: 'Inicio de vacaciones de verano' },
+                        22: { type: 'vacation', description: 'Vacaciones de verano' },
+                        23: { type: 'vacation', description: 'Vacaciones de verano' },
+                        24: { type: 'vacation', description: 'Vacaciones de verano' },
+                        25: { type: 'vacation', description: 'Vacaciones de verano' }
+                    }
+                }
+            }
+        };
+        
+        const monthNames = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        const dayNames = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
+        
+        function generateCalendar() {
+            const calendarGrid = document.getElementById('calendarGrid');
+            
+            // Generate months for academic year 2025-2026
+            const monthsOrder = [
+                {year: 2025, month: 8, className: 'august'},
+                {year: 2025, month: 9, className: 'september'},
+                {year: 2025, month: 10, className: 'october'},
+                {year: 2025, month: 11, className: 'november'},
+                {year: 2025, month: 12, className: 'december'},
+                {year: 2026, month: 1, className: 'january'},
+                {year: 2026, month: 2, className: 'february'},
+                {year: 2026, month: 3, className: 'march'},
+                {year: 2026, month: 4, className: 'april'},
+                {year: 2026, month: 5, className: 'may'},
+                {year: 2026, month: 6, className: 'june'},
+                {year: 2026, month: 7, className: 'july'}
+            ];
+            
+            monthsOrder.forEach(({year, month, className}) => {
+                const monthData = calendarData[year][month];
+                const monthBlock = document.createElement('div');
+                monthBlock.className = `month-block ${className}`;
+                
+                monthBlock.innerHTML = `
+                    <div class="month-header">${monthData.name} ${year}</div>
+                    <div class="days-header">
+                        ${dayNames.map(day => `<div class="day-label">${day}</div>`).join('')}
+                    </div>
+                    <div class="days-grid">
+                        ${generateDaysForMonth(year, month, monthData)}
+                    </div>
+                `;
+                
+                calendarGrid.appendChild(monthBlock);
+            });
+        }
+        
+        function generateDaysForMonth(year, month, monthData) {
+            let html = '';
+            const startDay = monthData.startDay;
+            const daysInMonth = monthData.days;
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth() + 1;
+            const currentDay = today.getDate();
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < startDay; i++) {
+                html += '<div class="day"></div>';
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const specialDay = monthData.specialDays[day];
+                let dayClass = 'day regular';
+                let tooltip = '';
+                
+                if (specialDay) {
+                    dayClass = `day ${specialDay.type}`;
+                    tooltip = `<div class="tooltip">${specialDay.description}</div>`;
+                }
+                
+                // Highlight current day
+                if (year === currentYear && month === currentMonth && day === currentDay) {
+                    dayClass += ' current';
+                }
+                
+                html += `<div class="${dayClass}">${day}${tooltip}</div>`;
+            }
+            
+            return html;
+        }
+        
+        // Initialize calendar when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add entrance animations
+            const monthBlocks = document.querySelectorAll('.month-block');
+            monthBlocks.forEach((block, index) => {
+                block.style.opacity = '0';
+                block.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    block.style.transition = 'all 0.5s ease';
+                    block.style.opacity = '1';
+                    block.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // Remove focus from any focused elements
+                document.activeElement.blur();
+            }
+        });
+        
+        // Add print styles
+        const printStyles = `
+            @media print {
+                body { background: white; padding: 0; }
+                .nav-back { display: none; }
+                .calendar-grid { grid-template-columns: repeat(2, 1fr); }
+                .month-block { break-inside: avoid; }
+            }
+        `;
+        
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = printStyles;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
