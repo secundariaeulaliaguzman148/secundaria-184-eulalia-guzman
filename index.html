@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escuela Secundaria No. 184 Eulalia Guzmán</title>
+    <title>Escuela Secundaria No. 184 Eulalia Guzmán - Turno Vespertino</title>
     <style>
         * {
             margin: 0;
@@ -12,159 +12,331 @@
         }
         
         body {
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fa;
+            color: #fff;
+            background: linear-gradient(135deg, rgba(31, 58, 95, 0.9), rgba(54, 95, 156, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
         }
         
+        /* Header */
         .header {
-            background-color: #1F3A5F;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .header p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .nav {
-            background-color: #365F9C;
-            padding: 1rem 0;
-        }
-        
-        .nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .nav li {
-            margin: 0 1rem;
-        }
-        
-        .nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        
-        .nav a:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-        
-        .hero {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 3rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .hero h2 {
-            color: #1F3A5F;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: #666;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #F4B400;
-            color: #333;
+            position: relative;
+            width: 100%;
             padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
         
-        .btn:hover {
+        /* Menu Button (Left) */
+        .menu-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
         
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        /* Logo (Center) */
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
         }
         
-        .card h3 {
-            color: #1F3A5F;
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-circle svg {
+            width: 40px;
+            height: 40px;
+            fill: #1F3A5F;
+        }
+        
+        .logo-text {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+        
+        /* Navigation Menu (Right) */
+        .nav-menu {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .nav-menu:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background: rgba(31, 58, 95, 0.95);
+            backdrop-filter: blur(10px);
+            min-width: 280px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            margin-top: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-content a {
+            color: white;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .dropdown-content a:first-child {
+            border-radius: 12px 12px 0 0;
+        }
+        
+        .dropdown-content a:hover {
+            background: rgba(54, 95, 156, 0.5);
+            padding-left: 2rem;
+        }
+        
+        /* Main Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
             margin-bottom: 1rem;
         }
         
-        .card p {
-            color: #666;
-            margin-bottom: 1.5rem;
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        .card a {
-            color: #365F9C;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .footer {
-            background-color: #2E2E2E;
+        .hero-button {
+            background: #dc2626;
             color: white;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+        
+        .hero-button:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+        
+        /* Four Pillars Section */
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 6rem auto 0;
+            padding: 0 2rem;
+        }
+        
+        .pillar {
             text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
+            padding: 2rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
         
-        .footer p {
-            margin: 0.5rem 0;
+        .pillar:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
-        /* Responsive */
+        .pillar-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: #F4B400;
+        }
+        
+        .pillar-description {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .pillar-link {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        /* Accessibility */
+        .accessibility-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #dc2626;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .accessibility-btn:hover {
+            background: #b91c1c;
+            transform: scale(1.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .pillars {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .nav ul {
+            .header {
+                padding: 1rem;
                 flex-direction: column;
-                align-items: center;
+                gap: 1rem;
             }
             
-            .nav li {
-                margin: 0.25rem 0;
+            .logo {
+                position: static;
+                transform: none;
             }
             
-            .hero h2 {
-                font-size: 1.5rem;
+            .hero-title {
+                font-size: 2.5rem;
             }
             
-            .container {
-                padding: 1rem 0.5rem;
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .pillars {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 3rem;
+            }
+            
+            .nav-menu, .menu-toggle {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.2rem;
+            }
+            
+            .dropdown-content {
+                min-width: 240px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+            
+            .pillar {
+                padding: 1.5rem 1rem;
+            }
+            
+            .pillar-title {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -172,91 +344,141 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <h1>Escuela Secundaria No. 184 "Eulalia Guzmán"</h1>
-        <p>Turno Vespertino - Sitio Oficial</p>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="nav">
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="pages/noticias.html">Ver todas las noticias</a>
-            <li><a href="#calendario">Calendario</a></li>
-            <li><a href="#campos">Campos Formativos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero" id="inicio">
-            <h2>Bienvenidos a nuestra comunidad educativa</h2>
-            <p>Comprometidos con la excelencia académica y el desarrollo integral de nuestros estudiantes en el turno vespertino.</p>
-            <a href="#noticias" class="btn">Ver Noticias Recientes</a>
-        </section>
-
-        <!-- Cards Section -->
-        <div class="cards">
-            <div class="card" id="noticias">
-                <h3>📰 Noticias</h3>
-                <p>Mantente informado sobre los eventos más recientes, avisos importantes y actividades escolares.</p>
-                <a href="#noticias">Ver todas las noticias →</a>
+        <!-- Menu Button (Left) -->
+        <button class="menu-toggle" onclick="alert('Próximamente: Menú de navegación rápida')">
+            Menu
+        </button>
+        
+        <!-- Logo (Center) -->
+        <div class="logo">
+            <div class="logo-circle">
+                <!-- SVG Icon for School -->
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                </svg>
             </div>
-
-            <div class="card" id="calendario">
-                <h3>📅 Calendarios</h3>
-                <p>Consulta el calendario escolar oficial y las actividades internas de la institución.</p>
-                <a href="#calendario">Ver calendario →</a>
-            </div>
-
-            <div class="card" id="campos">
-                <h3>📚 Campos Formativos</h3>
-                <p>Conoce nuestra estructura académica organizada en los 4 campos formativos del plan de estudios.</p>
-                <a href="#campos">Explorar campos →</a>
-            </div>
-
-            <div class="card">
-                <h3>🎭 Multimedia</h3>
-                <p>Galería de fotos y videos de eventos, festivales y actividades culturales de nuestra escuela.</p>
-                <a href="#multimedia">Ver galería →</a>
+            <div class="logo-text">Secundaria 184</div>
+        </div>
+        
+        <!-- Navigation Menu (Right) -->
+        <div class="dropdown">
+            <div class="nav-menu">Menú</div>
+            <div class="dropdown-content">
+                <a href="campos/lenguajes.html">🗣️ Lenguajes</a>
+                <a href="campos/saberes-cientifico.html">🔬 Saberes y Pensamiento Científico</a>
+                <a href="campos/etica-naturaleza.html">🌍 Ética, Naturaleza y Sociedad</a>
+                <a href="campos/humano-comunitario.html">🤝 De lo Humano y lo Comunitario</a>
+                <a href="pages/calendario.html">📅 Calendario</a>
+                <a href="pages/noticias.html">📰 Noticias</a>
             </div>
         </div>
+    </header>
 
-        <!-- Temporary Sections (para demonstrar) -->
-        <section style="margin-top: 4rem; padding: 2rem; background: white; border-radius: 8px;">
-            <h2 style="color: #1F3A5F; text-align: center; margin-bottom: 2rem;" id="campos">Campos Formativos</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>🗣️ Lenguajes</h3>
-                    <p>Español, Inglés y Artes</p>
-                    <small>Desarrollo de competencias comunicativas en diversos lenguajes</small>
-                </div>
-                <div class="card">
-                    <h3>🔬 Saberes y Pensamiento Científico</h3>
-                    <p>Matemáticas, Ciencias y Tecnología</p>
-                    <small>Construcción del conocimiento científico y tecnológico</small>
-                </div>
-                <div class="card">
-                    <h3>🌍 Ética, Naturaleza y Sociedad</h3>
-                    <p>Historia, Geografía y Formación Cívica</p>
-                    <small>Comprensión del entorno natural y social</small>
-                </div>
-                <div class="card">
-                    <h3>🤝 De lo Humano y lo Comunitario</h3>
-                    <p>Educación Física, Tutoría y Vida Saludable</p>
-                    <small>Desarrollo integral de la persona en comunidad</small>
-                </div>
-            </div>
-        </section>
-    </div>
+    <!-- Main Hero Section -->
+    <main class="hero">
+        <div class="hero-subtitle">Escuela Secundaria No. 184 "Eulalia Guzmán"</div>
+        <h1 class="hero-title">Un Camino Claro hacia el Potencial</h1>
+        <a href="pages/noticias.html" class="hero-button">Últimas Noticias</a>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer" id="contacto">
-        <p><strong>Escuela Secundaria No. 184 "Eulalia Guzmán" - Turno Vespertino</strong></p>
-        <p>📍 Dirección: De La Borrasca S/N, Acueducto de Guadalupe, Gustavo A. Madero, 07270 Ciudad de México, CDMX</p>
-        <p>🕐 Horario: Turno Vespertino 14:00 - 20:00 hrs</p>
-        <p style="margin-top: 1rem; opacity: 0.7;">© 2025 Escuela Secundaria 184. Sitio web informativo oficial.</p>
-    </footer>
+    <!-- Four Pillars Section -->
+    <section class="pillars">
+        <!-- Lenguajes -->
+        <article class="pillar">
+            <a href="campos/lenguajes.html" class="pillar-link">
+                <h2 class="pillar-title">Lenguajes</h2>
+                <p class="pillar-description">
+                    Desarrollo de competencias comunicativas en español, inglés y artes para una expresión integral y efectiva.
+                </p>
+            </a>
+        </article>
+        
+        <!-- Saberes y Pensamiento Científico -->
+        <article class="pillar">
+            <a href="campos/saberes-cientifico.html" class="pillar-link">
+                <h2 class="pillar-title">Pensamiento Científico</h2>
+                <p class="pillar-description">
+                    Construcción del conocimiento científico y tecnológico a través de matemáticas, ciencias y tecnología.
+                </p>
+            </a>
+        </article>
+        
+        <!-- Ética, Naturaleza y Sociedad -->
+        <article class="pillar">
+            <a href="campos/etica-naturaleza.html" class="pillar-link">
+                <h2 class="pillar-title">Sociedad</h2>
+                <p class="pillar-description">
+                    Comprensión del entorno natural y social mediante historia, geografía y formación cívica y ética.
+                </p>
+            </a>
+        </article>
+        
+        <!-- De lo Humano y lo Comunitario -->
+        <article class="pillar">
+            <a href="campos/humano-comunitario.html" class="pillar-link">
+                <h2 class="pillar-title">Comunidad</h2>
+                <p class="pillar-description">
+                    Desarrollo integral de la persona en comunidad a través de educación física, tutoría y vida saludable.
+                </p>
+            </a>
+        </article>
+    </section>
+
+    <!-- Accessibility Button -->
+    <button class="accessibility-btn" title="Opciones de accesibilidad" onclick="toggleAccessibility()">
+        ♿
+    </button>
+
+    <script>
+        // Accessibility function
+        function toggleAccessibility() {
+            const body = document.body;
+            const currentSize = parseInt(window.getComputedStyle(body, null).getPropertyValue('font-size'));
+            
+            if (currentSize >= 18) {
+                body.style.fontSize = '16px'; // Reset to normal
+                body.style.filter = 'none'; // Remove high contrast
+            } else {
+                body.style.fontSize = '18px'; // Increase font size
+                body.style.filter = 'contrast(1.5)'; // High contrast
+            }
+        }
+        
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu functionality
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            alert('Funcionalidad de menú móvil. En la versión final, esto abriría un menú lateral.');
+        });
+
+        // Add keyboard navigation support
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // Close any open dropdowns
+                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
+                    dropdown.style.display = 'none';
+                });
+            }
+        });
+        
+        // Track focus for accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('using-keyboard');
+            }
+        });
+        
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('using-keyboard');
+        });
+    </script>
 </body>
 </html>
