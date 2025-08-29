@@ -47,29 +47,29 @@
         
         /* Default background images - Replace with actual school photos */
         .bg-slide:nth-child(1) {
-            background-image: linear-gradient(135deg, rgba(0, 15, 43, 0.8), rgba(5, 47, 99, 0.7)), url('assets/images/instalaciones/148_es_principal.jpg');
+            background-image: linear-gradient(135deg, rgba(0, 15, 43, 0.85), rgba(5, 47, 99, 0.8)), url('assets/images/instalaciones/148_es_principal.jpg');
         }
         
         .bg-slide:nth-child(2) {
-            background-image: linear-gradient(135deg, rgba(1, 12, 25, 0.8), rgba(4, 35, 74, 0.7)), url('assets/images/instalaciones/148_esc_principal_3.jpg');
+            background-image: linear-gradient(135deg, rgba(1, 12, 25, 0.85), rgba(4, 35, 74, 0.8)), url('assets/images/instalaciones/148_esc_principal_3.jpg');
         }
         
         .bg-slide:nth-child(3) {
-            background-image: linear-gradient(135deg, rgba(3, 23, 50, 0.8), rgba(19, 87, 110, 0.7)), url('assets/images/instalaciones/148_esc_principal_4.jpg');
+            background-image: linear-gradient(135deg, rgba(3, 23, 50, 0.85), rgba(19, 87, 110, 0.8)), url('assets/images/instalaciones/148_esc_principal_4.jpg');
         }
         
         .bg-slide:nth-child(4) {
-            background-image: linear-gradient(135deg, rgba(27, 38, 77, 0.8), rgba(38, 59, 97, 0.7)), url('assets/images/instalaciones/148_esc_principal_2.jpg');
+            background-image: linear-gradient(135deg, rgba(27, 38, 77, 0.85), rgba(38, 59, 97, 0.8)), url('assets/images/instalaciones/148_esc_principal_2.jpg');
         }
         
-        /* Overlay */
+        /* Stronger overlay for better contrast */
         .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 15, 43, 0.1);
+            background: rgba(0, 15, 43, 0.3);
             z-index: -1;
         }
         
@@ -81,13 +81,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 15, 43, 0.1);
+            background: rgba(0, 15, 43, 0.2);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1000;
         }
         
-        /* Logo (Center) */
+        /* Logo (Center) - FIXED VERSION */
         .logo {
             position: absolute;
             left: 50%;
@@ -103,42 +103,54 @@
         }
         
         .logo-circle {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.95);
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
+            overflow: hidden;
         }
         
         .logo-circle:hover {
             transform: scale(1.05);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
         }
         
+        /* UPDATED: Logo image styling */
         .logo-image {
-            width: 50px;
-            height: 50px;
+            width: 75px;
+            height: 75px;
             object-fit: contain;
+            border-radius: 50%;
+        }
+        
+        /* Hide the placeholder SVG when logo image is present */
+        .logo-image + .logo-placeholder {
+            display: none;
         }
         
         .logo-placeholder {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             fill: #000F2B;
         }
         
         .logo-text {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             opacity: 0.95;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
         }
         
         /* Navigation Menu (Right) */
@@ -148,8 +160,8 @@
         }
         
         .nav-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.4);
             color: white;
             padding: 1rem 2rem;
             border-radius: 50px;
@@ -159,18 +171,18 @@
             letter-spacing: 2px;
             transition: all 0.3s ease;
             font-size: 0.9rem;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
         }
         
         .nav-toggle:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
         
         .nav-toggle.active {
-            background: rgba(19, 87, 110, 0.8);
-            border-color: rgba(19, 87, 110, 0.6);
+            background: rgba(19, 87, 110, 0.9);
+            border-color: rgba(19, 87, 110, 0.7);
         }
         
         /* Dropdown Menu */
@@ -182,8 +194,8 @@
             background: rgba(0, 15, 43, 0.95);
             backdrop-filter: blur(20px);
             border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
@@ -205,8 +217,8 @@
             width: 16px;
             height: 16px;
             background: rgba(0, 15, 43, 0.95);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
             transform: rotate(45deg);
         }
         
@@ -226,7 +238,7 @@
         
         .nav-link {
             display: block;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             padding: 1.2rem 1.8rem;
             text-decoration: none;
             font-weight: 500;
@@ -244,7 +256,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
             transition: left 0.5s ease;
             z-index: 0;
         }
@@ -255,7 +267,7 @@
         
         .nav-item:hover .nav-link {
             color: white;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             padding-left: 2.2rem;
             backdrop-filter: blur(10px);
         }
@@ -279,21 +291,26 @@
         }
         
         .hero-subtitle {
-            font-size: 1rem;
-            font-weight: 400;
+            font-size: 1.1rem;
+            font-weight: 500;
             letter-spacing: 3px;
             text-transform: uppercase;
-            opacity: 0.9;
+            opacity: 0.95;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease-out 0.2s both;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
         }
         
         .hero-title {
-            font-size: 4rem;
+            font-size: 4.2rem;
             font-weight: 300;
             line-height: 1.2;
             margin-bottom: 3rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
             animation: fadeInUp 1s ease-out 0.4s both;
         }
         
@@ -307,7 +324,7 @@
             position: relative;
             background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
-            padding: 1.2rem 3rem;
+            padding: 1.3rem 3.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -317,9 +334,10 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 10px 40px rgba(220, 38, 38, 0.4);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         .hero-button::before {
@@ -329,7 +347,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: left 0.6s ease;
         }
         
@@ -339,15 +357,15 @@
         
         .hero-button:hover {
             background: linear-gradient(135deg, #b91c1c, #991b1b);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 40px rgba(220, 38, 38, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 50px rgba(220, 38, 38, 0.5);
         }
         
         .hero-button:active {
-            transform: translateY(-1px) scale(1.01);
+            transform: translateY(-2px) scale(1.01);
         }
         
-        /* Four Pillars Section */
+        /* Four Pillars Section - IMPROVED CONTRAST */
         .pillars {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -361,14 +379,15 @@
         .pillar {
             text-align: center;
             padding: 2.5rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.12);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.25);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
         
         .pillar::before {
@@ -378,7 +397,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.4s ease;
             transform: scale(0);
@@ -390,29 +409,32 @@
         }
         
         .pillar:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border-color: rgba(19, 87, 110, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.4);
         }
         
         .pillar-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             margin-bottom: 1.5rem;
-            color: #13576E;
+            color: #ffffff;
             position: relative;
             z-index: 1;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         }
         
         .pillar-description {
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.7;
-            opacity: 0.9;
+            opacity: 0.95;
             position: relative;
             z-index: 1;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
         }
         
         .pillar-link {
@@ -435,7 +457,7 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero-title {
-                font-size: 3.2rem;
+                font-size: 3.5rem;
             }
             
             .pillars {
@@ -467,7 +489,7 @@
             }
             
             .hero-title {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
             
             .hero {
@@ -502,7 +524,7 @@
         
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .hero-subtitle {
@@ -511,23 +533,27 @@
             }
             
             .hero-button {
-                padding: 1rem 2rem;
+                padding: 1rem 2.5rem;
                 font-size: 1rem;
             }
             
             .logo-circle {
-                width: 70px;
-                height: 70px;
+                width: 75px;
+                height: 75px;
             }
             
-            .logo-image,
+            .logo-image {
+                width: 60px;
+                height: 60px;
+            }
+            
             .logo-placeholder {
                 width: 40px;
                 height: 40px;
             }
             
             .pillar-title {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -546,12 +572,13 @@
 
     <!-- Header -->
     <header class="header">
-        <!-- Logo (Center) -->
+        <!-- Logo (Center) - UPDATED VERSION -->
         <div class="logo">
             <div class="logo-container">
                 <div class="logo-circle">
-                    <!-- Replace this section with actual school logo -->
-                    <img src="assets/images/logos/Escuela_Escudo.png" alt="Logo Secundaria 184" class="logo-image">
+                    <!-- UPDATED: Show only the uploaded logo image -->
+                    <img src="assets/images/logos/logo-escuela.png" alt="Escudo Secundaria 184" class="logo-image">
+                    <!-- Fallback SVG - only shows if image fails to load -->
                     <svg class="logo-placeholder" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
                     </svg>
@@ -723,7 +750,7 @@
         // Enhance button interactions
         const heroButton = document.querySelector('.hero-button');
         heroButton.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.02)';
+            this.style.transform = 'translateY(-4px) scale(1.02)';
         });
         
         heroButton.addEventListener('mouseleave', function() {
