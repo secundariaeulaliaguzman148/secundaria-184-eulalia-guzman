@@ -15,43 +15,76 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: #fff;
-            background: linear-gradient(135deg, rgba(31, 58, 95, 0.9), rgba(54, 95, 156, 0.8)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            overflow-x: hidden;
+        }
+        
+        /* Background Image Carousel */
+        .background-carousel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
+            background-repeat: no-repeat;
+        }
+        
+        .bg-slide.active {
+            opacity: 1;
+        }
+        
+        /* Default background images - Replace with actual school photos */
+        .bg-slide:nth-child(1) {
+            background-image: linear-gradient(135deg, rgba(0, 15, 43, 0.8), rgba(5, 47, 99, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .bg-slide:nth-child(2) {
+            background-image: linear-gradient(135deg, rgba(1, 12, 25, 0.8), rgba(4, 35, 74, 0.7)), url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2032&q=80');
+        }
+        
+        .bg-slide:nth-child(3) {
+            background-image: linear-gradient(135deg, rgba(3, 23, 50, 0.8), rgba(19, 87, 110, 0.7)), url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .bg-slide:nth-child(4) {
+            background-image: linear-gradient(135deg, rgba(27, 38, 77, 0.8), rgba(38, 59, 97, 0.7)), url('https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80');
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 15, 43, 0.1);
+            z-index: -1;
         }
         
         /* Header */
         .header {
             position: relative;
             width: 100%;
-            padding: 1rem 2rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Menu Button (Left) */
-        .menu-toggle {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-        
-        .menu-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
+            background: rgba(0, 15, 43, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
         }
         
         /* Logo (Center) */
@@ -62,6 +95,13 @@
             text-align: center;
         }
         
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
         .logo-circle {
             width: 80px;
             height: 80px;
@@ -70,96 +110,170 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
         
-        .logo-circle svg {
-            width: 40px;
-            height: 40px;
-            fill: #1F3A5F;
+        .logo-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+        
+        .logo-placeholder {
+            width: 45px;
+            height: 45px;
+            fill: #000F2B;
         }
         
         .logo-text {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.9;
+            letter-spacing: 1.5px;
+            opacity: 0.95;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         /* Navigation Menu (Right) */
-        .nav-menu {
+        .nav-container {
+            position: relative;
+            margin-left: auto;
+        }
+        
+        .nav-toggle {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 1rem 2rem;
             border-radius: 50px;
-            padding: 0.75rem 1.5rem;
             cursor: pointer;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            backdrop-filter: blur(10px);
         }
         
-        .nav-menu:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .nav-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-toggle.active {
+            background: rgba(19, 87, 110, 0.8);
+            border-color: rgba(19, 87, 110, 0.6);
         }
         
         /* Dropdown Menu */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-        
-        .dropdown-content {
-            display: none;
+        .nav-dropdown {
             position: absolute;
+            top: calc(100% + 15px);
             right: 0;
-            top: 100%;
-            background: rgba(31, 58, 95, 0.95);
-            backdrop-filter: blur(10px);
-            min-width: 280px;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            margin-top: 10px;
+            min-width: 320px;
+            background: rgba(0, 15, 43, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2000;
         }
         
-        .dropdown:hover .dropdown-content {
+        .nav-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 30px;
+            width: 16px;
+            height: 16px;
+            background: rgba(0, 15, 43, 0.95);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transform: rotate(45deg);
+        }
+        
+        .nav-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-item:first-child .nav-link {
+            border-radius: 16px 16px 0 0;
+        }
+        
+        .nav-item:last-child .nav-link {
+            border-radius: 0 0 16px 16px;
+            border-bottom: none;
+        }
+        
+        .nav-link {
             display: block;
-        }
-        
-        .dropdown-content a {
-            color: white;
-            padding: 1rem 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 1.2rem 1.8rem;
             text-decoration: none;
-            display: block;
             font-weight: 500;
+            font-size: 0.95rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
         }
         
-        .dropdown-content a:last-child {
-            border-bottom: none;
-            border-radius: 0 0 12px 12px;
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+            z-index: 0;
         }
         
-        .dropdown-content a:first-child {
-            border-radius: 12px 12px 0 0;
+        .nav-item:hover::before {
+            left: 100%;
         }
         
-        .dropdown-content a:hover {
-            background: rgba(54, 95, 156, 0.5);
-            padding-left: 2rem;
+        .nav-item:hover .nav-link {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            padding-left: 2.2rem;
+            backdrop-filter: blur(10px);
         }
         
-        /* Main Hero Section */
+        /* Main Content */
+        .main-content {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Hero Section */
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -171,6 +285,7 @@
             text-transform: uppercase;
             opacity: 0.9;
             margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
         
         .hero-title {
@@ -178,30 +293,58 @@
             font-weight: 300;
             line-height: 1.2;
             margin-bottom: 3rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        /* Enhanced CTA Button */
+        .cta-container {
+            margin: 3rem 0 4rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
         
         .hero-button {
-            background: #dc2626;
+            position: relative;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
-            padding: 1rem 3rem;
-            font-size: 1rem;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 2px;
             border: none;
-            border-radius: 4px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .hero-button:hover::before {
+            left: 100%;
         }
         
         .hero-button:hover {
-            background: #b91c1c;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(220, 38, 38, 0.4);
+        }
+        
+        .hero-button:active {
+            transform: translateY(-1px) scale(1.01);
         }
         
         /* Four Pillars Section */
@@ -210,40 +353,66 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             max-width: 1200px;
-            margin: 6rem auto 0;
+            margin: 0 auto;
             padding: 0 2rem;
+            animation: fadeInUp 1s ease-out 0.8s both;
         }
         
         .pillar {
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 2.5rem 2rem;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            transform: scale(0);
+        }
+        
+        .pillar:hover::before {
+            opacity: 1;
+            transform: scale(1);
         }
         
         .pillar:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(19, 87, 110, 0.3);
         }
         
         .pillar-title {
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            color: #F4B400;
+            letter-spacing: 1.5px;
+            margin-bottom: 1.5rem;
+            color: #13576E;
+            position: relative;
+            z-index: 1;
         }
         
         .pillar-description {
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.7;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
         
         .pillar-link {
@@ -251,37 +420,31 @@
             text-decoration: none;
         }
         
-        /* Accessibility */
-        .accessibility-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: #dc2626;
-            border: none;
-            border-radius: 50%;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .accessibility-btn:hover {
-            background: #b91c1c;
-            transform: scale(1.1);
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         /* Responsive Design */
         @media (max-width: 1024px) {
             .hero-title {
-                font-size: 3rem;
+                font-size: 3.2rem;
             }
             
             .pillars {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
+            }
+            
+            .nav-dropdown {
+                min-width: 280px;
             }
         }
         
@@ -295,35 +458,51 @@
             .logo {
                 position: static;
                 transform: none;
+                order: 1;
+            }
+            
+            .nav-container {
+                order: 2;
+                margin-left: 0;
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero {
-                padding: 2rem 1rem;
+                padding: 1rem;
             }
             
             .pillars {
                 grid-template-columns: 1fr;
                 gap: 1rem;
-                margin-top: 3rem;
+                padding: 0 1rem;
             }
             
-            .nav-menu, .menu-toggle {
-                font-size: 0.8rem;
-                padding: 0.6rem 1.2rem;
+            .pillar {
+                padding: 2rem 1.5rem;
             }
             
-            .dropdown-content {
-                min-width: 240px;
+            .nav-dropdown {
+                min-width: 260px;
+                right: 50%;
+                transform: translateX(50%) translateY(-10px);
+            }
+            
+            .nav-dropdown.show {
+                transform: translateX(50%) translateY(0);
+            }
+            
+            .nav-dropdown::before {
+                left: 50%;
+                transform: translateX(-50%) rotate(45deg);
             }
         }
         
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero-subtitle {
@@ -331,153 +510,251 @@
                 letter-spacing: 2px;
             }
             
-            .pillar {
-                padding: 1.5rem 1rem;
+            .hero-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .logo-circle {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .logo-image,
+            .logo-placeholder {
+                width: 40px;
+                height: 40px;
             }
             
             .pillar-title {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Background Carousel -->
+    <div class="background-carousel">
+        <div class="bg-slide active"></div>
+        <div class="bg-slide"></div>
+        <div class="bg-slide"></div>
+        <div class="bg-slide"></div>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
     <!-- Header -->
     <header class="header">
-        <!-- Menu Button (Left) -->
-        <button class="menu-toggle" onclick="alert('Próximamente: Menú de navegación rápida')">
-            Menu
-        </button>
-        
         <!-- Logo (Center) -->
         <div class="logo">
-            <div class="logo-circle">
-                <!-- SVG Icon for School -->
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
-                </svg>
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <!-- Replace this section with actual school logo -->
+                    <!-- <img src="assets/images/logos/logo-escuela.png" alt="Logo Secundaria 184" class="logo-image"> -->
+                    <!-- Placeholder SVG - Remove when adding real logo -->
+                    <svg class="logo-placeholder" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                    </svg>
+                </div>
+                <div class="logo-text">Secundaria 184</div>
             </div>
-            <div class="logo-text">Secundaria 184</div>
         </div>
         
         <!-- Navigation Menu (Right) -->
-        <div class="dropdown">
-            <div class="nav-menu">Menú</div>
-            <div class="dropdown-content">
-                <a href="campos/lenguajes.html">🗣️ Lenguajes</a>
-                <a href="campos/saberes-cientifico.html">🔬 Saberes y Pensamiento Científico</a>
-                <a href="campos/etica-naturaleza.html">🌍 Ética, Naturaleza y Sociedad</a>
-                <a href="campos/humano-comunitario.html">🤝 De lo Humano y lo Comunitario</a>
-                <a href="pages/calendario.html">📅 Calendario</a>
-                <a href="pages/noticias.html">📰 Noticias</a>
+        <nav class="nav-container">
+            <button class="nav-toggle" id="navToggle">Menú</button>
+            <div class="nav-dropdown" id="navDropdown">
+                <div class="nav-item">
+                    <a href="campos/lenguajes.html" class="nav-link">Lenguajes</a>
+                </div>
+                <div class="nav-item">
+                    <a href="campos/saberes-cientifico.html" class="nav-link">Saberes y Pensamiento Científico</a>
+                </div>
+                <div class="nav-item">
+                    <a href="campos/etica-naturaleza.html" class="nav-link">Ética, Naturaleza y Sociedad</a>
+                </div>
+                <div class="nav-item">
+                    <a href="campos/humano-comunitario.html" class="nav-link">De lo Humano y lo Comunitario</a>
+                </div>
+                <div class="nav-item">
+                    <a href="pages/calendario.html" class="nav-link">Calendario</a>
+                </div>
+                <div class="nav-item">
+                    <a href="pages/noticias.html" class="nav-link">Noticias</a>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Main Hero Section -->
-    <main class="hero">
-        <div class="hero-subtitle">Escuela Secundaria No. 184 "Eulalia Guzmán"</div>
-        <h1 class="hero-title">Un Camino Claro hacia el Potencial</h1>
-        <a href="pages/noticias.html" class="hero-button">Últimas Noticias</a>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-subtitle">Escuela Secundaria No. 184 "Eulalia Guzmán"</div>
+            <h1 class="hero-title">Un Camino Claro hacia el Potencial</h1>
+            <div class="cta-container">
+                <a href="pages/noticias.html" class="hero-button">Últimas Noticias</a>
+            </div>
+        </section>
+
+        <!-- Four Pillars Section -->
+        <section class="pillars">
+            <!-- Lenguajes -->
+            <article class="pillar">
+                <a href="campos/lenguajes.html" class="pillar-link">
+                    <h2 class="pillar-title">Lenguajes</h2>
+                    <p class="pillar-description">
+                        Desarrollo de competencias comunicativas en español, inglés y artes para una expresión integral y efectiva.
+                    </p>
+                </a>
+            </article>
+            
+            <!-- Saberes y Pensamiento Científico -->
+            <article class="pillar">
+                <a href="campos/saberes-cientifico.html" class="pillar-link">
+                    <h2 class="pillar-title">Pensamiento Científico</h2>
+                    <p class="pillar-description">
+                        Construcción del conocimiento científico y tecnológico a través de matemáticas, ciencias y tecnología.
+                    </p>
+                </a>
+            </article>
+            
+            <!-- Ética, Naturaleza y Sociedad -->
+            <article class="pillar">
+                <a href="campos/etica-naturaleza.html" class="pillar-link">
+                    <h2 class="pillar-title">Sociedad</h2>
+                    <p class="pillar-description">
+                        Comprensión del entorno natural y social mediante historia, geografía y formación cívica y ética.
+                    </p>
+                </a>
+            </article>
+            
+            <!-- De lo Humano y lo Comunitario -->
+            <article class="pillar">
+                <a href="campos/humano-comunitario.html" class="pillar-link">
+                    <h2 class="pillar-title">Comunidad</h2>
+                    <p class="pillar-description">
+                        Desarrollo integral de la persona en comunidad a través de educación física, tutoría y vida saludable.
+                    </p>
+                </a>
+            </article>
+        </section>
     </main>
 
-    <!-- Four Pillars Section -->
-    <section class="pillars">
-        <!-- Lenguajes -->
-        <article class="pillar">
-            <a href="campos/lenguajes.html" class="pillar-link">
-                <h2 class="pillar-title">Lenguajes</h2>
-                <p class="pillar-description">
-                    Desarrollo de competencias comunicativas en español, inglés y artes para una expresión integral y efectiva.
-                </p>
-            </a>
-        </article>
-        
-        <!-- Saberes y Pensamiento Científico -->
-        <article class="pillar">
-            <a href="campos/saberes-cientifico.html" class="pillar-link">
-                <h2 class="pillar-title">Pensamiento Científico</h2>
-                <p class="pillar-description">
-                    Construcción del conocimiento científico y tecnológico a través de matemáticas, ciencias y tecnología.
-                </p>
-            </a>
-        </article>
-        
-        <!-- Ética, Naturaleza y Sociedad -->
-        <article class="pillar">
-            <a href="campos/etica-naturaleza.html" class="pillar-link">
-                <h2 class="pillar-title">Sociedad</h2>
-                <p class="pillar-description">
-                    Comprensión del entorno natural y social mediante historia, geografía y formación cívica y ética.
-                </p>
-            </a>
-        </article>
-        
-        <!-- De lo Humano y lo Comunitario -->
-        <article class="pillar">
-            <a href="campos/humano-comunitario.html" class="pillar-link">
-                <h2 class="pillar-title">Comunidad</h2>
-                <p class="pillar-description">
-                    Desarrollo integral de la persona en comunidad a través de educación física, tutoría y vida saludable.
-                </p>
-            </a>
-        </article>
-    </section>
-
-    <!-- Accessibility Button -->
-    <button class="accessibility-btn" title="Opciones de accesibilidad" onclick="toggleAccessibility()">
-        ♿
-    </button>
-
     <script>
-        // Accessibility function
-        function toggleAccessibility() {
-            const body = document.body;
-            const currentSize = parseInt(window.getComputedStyle(body, null).getPropertyValue('font-size'));
-            
-            if (currentSize >= 18) {
-                body.style.fontSize = '16px'; // Reset to normal
-                body.style.filter = 'none'; // Remove high contrast
-            } else {
-                body.style.fontSize = '18px'; // Increase font size
-                body.style.filter = 'contrast(1.5)'; // High contrast
+        // Navigation Menu Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navDropdown = document.getElementById('navDropdown');
+        
+        navToggle.addEventListener('click', function() {
+            navDropdown.classList.toggle('show');
+            navToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navToggle.contains(event.target) && !navDropdown.contains(event.target)) {
+                navDropdown.classList.remove('show');
+                navToggle.classList.remove('active');
             }
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                navDropdown.classList.remove('show');
+                navToggle.classList.remove('active');
+            }
+        });
+        
+        // Background Image Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.bg-slide');
+        const totalSlides = slides.length;
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('active');
         }
         
-        // Smooth scrolling for internal links
+        // Change background every 6 seconds
+        setInterval(nextSlide, 6000);
+        
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
         
-        // Mobile menu functionality
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            alert('Funcionalidad de menú móvil. En la versión final, esto abriría un menú lateral.');
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
         });
-
-        // Add keyboard navigation support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                // Close any open dropdowns
-                document.querySelectorAll('.dropdown-content').forEach(dropdown => {
-                    dropdown.style.display = 'none';
-                });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe pillar elements
+        document.querySelectorAll('.pillar').forEach(pillar => {
+            observer.observe(pillar);
+        });
+        
+        // Enhance button interactions
+        const heroButton = document.querySelector('.hero-button');
+        heroButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.02)';
+        });
+        
+        heroButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+        
+        // Keyboard navigation support
+        navToggle.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                navToggle.click();
             }
         });
         
-        // Track focus for accessibility
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                document.body.classList.add('using-keyboard');
+        // Focus management for dropdown
+        navDropdown.addEventListener('keydown', function(event) {
+            const links = navDropdown.querySelectorAll('.nav-link');
+            const currentIndex = Array.from(links).indexOf(document.activeElement);
+            
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                const nextIndex = currentIndex < links.length - 1 ? currentIndex + 1 : 0;
+                links[nextIndex].focus();
             }
-        });
-        
-        document.addEventListener('mousedown', function() {
-            document.body.classList.remove('using-keyboard');
+            
+            if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                const prevIndex = currentIndex > 0 ? currentIndex - 1 : links.length - 1;
+                links[prevIndex].focus();
+            }
         });
     </script>
 </body>
